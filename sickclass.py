@@ -1,12 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
 
+
 window = Tk()
 window.geometry("500x500")
 window.title("Student Number: 123456789")
 frame = Frame(window)
-
-
 
 #The layout of The Sick Class
 
@@ -55,33 +54,34 @@ var = StringVar()
 
 # The Calculations for the Sick Class
 class Sick():
-    def sickness(self):
+    def __init__(self):
         self.MSickID = MSickID
         self.MDurationOfTreatment = MDurationOfTreatment
         self.MDoctorsID = MDoctorsID
         self.medcancer = 400
         self.medinflu = 350.50
 
-# Calculating Cancer
+# Calculating Scan/Consultation fee
+
+# Creating spaces between the "Amount Paid For Treatment" and the + str(cancer_answer) so the answer can display below the
+# radiobuttons
 def sickness():
     if var.get() == "Cancer":
         if int(scan_entry.get()) > 600:
             messagebox.showinfo("Message", "Sorry we cannot treat you") # Error message will display
         elif int(scan_entry.get()) < 600:
            cancer_answer = int(scan_entry.get()) + 400
-           amount_paid.config(text="AmountPaidForTreatment: " + str(cancer_answer))
+           amount_paid.config(text="AmountPaidForTreatment:                          " + str(cancer_answer))
 
     if var.get() == "Influenza": # Calculating Influenza
         if int(scan_entry.get()) >= 600:
             influ_answer = 350.50 + int(scan_entry.get())
-            amount_paid.config(text="AmountPaidForTreatment: " + str(influ_answer))
+            amount_paid.config(text="AmountPaidForTreatment:                         " + str(influ_answer))
         elif int(scan_entry.get()) < 600:
             influ_answer = 350.50 + int(scan_entry.get())
-            discount = (influ_answer * (2/100)) + influ_answer # Calculating the discount recieve
+            discount = (influ_answer * (2/100)) + influ_answer # Calculating the discount recieve. Will be in a float.
             messagebox.showinfo("Message", "2% discount")
-            amount_paid.config(text="Amount Paid For Treatment: "  + str(discount)) #discount will be included in the calculation
-
-
+            amount_paid.config(text="Amount Paid For Treatment:                      "  + str(discount)) #discount will be included in the calculation
 
 
 radbtn1 = Radiobutton(window, text = "Cancer" , variable = var, value ="Cancer") # Radiobutton for Cancer
